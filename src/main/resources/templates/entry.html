@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>My LDAP App</title>
+    <!-- Lien CDN pour Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+		body {
+            font-family: 'Roboto', sans-serif;
+        }
+        .navbar {
+            background-color: #242a76; 
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-left: 0px; 
+            margin-right: 0px; 
+        }
+        .navbar-brand img {
+            height: 40px;
+        }
+        .navbar-nav {
+            margin: 0 auto;
+            margin-left: 100px;
+        }
+        .navbar-nav .nav-item {
+            margin: 0 15px;
+        }
+        .navbar-nav .nav-link {
+            color: #ffffff !important;
+            padding: 10px 20px;
+            border-radius: 5px;
+            background-color: #1a1e56;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+        .navbar-nav .nav-link:hover {
+            background-color: #ffffff;
+            color: #242a76 !important;
+            transform: scale(1.05);
+        }
+        .footer {
+            background-color: #242a76;
+            color: white;
+            padding: 10px 0;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+            text-align: center;
+            box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .jumbotron {
+            background-color: #f8f9fa;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 2rem 1rem;
+        }
+        .btn-primary {
+            background-color: #242a76;
+            border-color: #242a76;
+        }
+        .btn-primary:hover {
+            background-color: #1a1e56;
+            border-color: #1a1e56;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <a class="navbar-brand" href="/">
+            <img src="/images/thales-logo.png" alt="Thales Logo"> My LDAP App
+        </a>
+        <div class="collapse navbar-collapse">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="/">Accueil</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/search">Rechercher</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/modify">Modifier</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/add">Ajouter</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <div class="container mt-5">
+        <div class="card">
+            <div class="card-header">Ajouter une Entrée</div>
+            <div class="card-body">
+                <form action="/add" method="post">
+                    <div class="form-group">
+                        <label for="name">Nom</label>
+                        <input type="text" class="form-control" id="name" name="name" placeholder="Entrez le nom" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="firstname">Prénom</label>
+                        <input type="text" class="form-control" id="firstname" name="firstname" placeholder="Entrez le prénom" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" class="form-control" id="email" name="email" placeholder="Entrez l'email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Téléphone</label>
+                        <input type="tel" class="form-control" id="phone" name="phone" placeholder="Entrez le numéro de téléphone" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="poste">Poste</label>
+                        <input type="text" class="form-control" id="poste" name="poste" placeholder="Entrez le poste" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Ajouter</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="spacer"></div>
+    <footer class="footer">
+        <div class="container">
+            <span>&copy; 2024 Thales Group. Tous droits réservés.</span>
+        </div>
+    </footer>
+    <!-- Lien CDN pour Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
