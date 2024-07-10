@@ -1,19 +1,18 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>My LDAP App</title>
-    <!-- Lien CDN pour Bootstrap CSS -->
+    <title>Recherche LDAP</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <style>
-		body {
+        body {
             font-family: 'Roboto', sans-serif;
         }
         .navbar {
-            background-color: #242a76; 
+            background-color: #242a76;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            margin-left: 0px; 
-            margin-right: 0px; 
+            margin-left: 0px;
+            margin-right: 0px;
         }
         .navbar-brand img {
             height: 40px;
@@ -60,52 +59,74 @@
             background-color: #1a1e56;
             border-color: #1a1e56;
         }
+        .result-header {
+            font-weight: bold;
+            margin-top: 15px;
+        }
+        .result-item {
+            padding: 10px 0;
+            border-bottom: 1px solid #ccc;
+        }
     </style>
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark">
-        <a class="navbar-brand" href="/">
-            <img src="caca.png" alt="Thales Logo"> My LDAP App
-        </a>
-        <div class="collapse navbar-collapse">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="/">Accueil</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/search">Rechercher</a>
-                </li>
-                <li class="nav-item">
-    				<a class="nav-link" href="/modify">Modifier</a>
-				</li>
-				<li class="nav-item">
-                    <a class="nav-link" href="/add">Ajouter</a>
-                </li>
-            </ul>
-        </div>
-    </nav>
-    <div class="container mt-5">
-        <div class="card">
-            <div class="card-header">
-                <h2>Rechercher entrée LDAP</h2>
+<nav class="navbar navbar-expand-lg navbar-dark">
+    <a class="navbar-brand" href="/">
+        <img src="caca.png" alt="Thales Logo"> My LDAP App
+    </a>
+    <div class="collapse navbar-collapse">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="/">Accueil</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/search">Rechercher</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/modif">Modifier</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/add">Ajouter</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+<div class="container mt-5">
+    <div class="jumbotron">
+        <h1 class="display-4">Recherche LDAP</h1>
+            <form action="#" th:action="@{/search}" method="get">
+            <div class="form-group">
+                <label for="username">Rechercher par commun name (cn):</label>
+                <input type="text" class="form-control" id="username" name="username" placeholder="Entrez le commun name (cn)">
             </div>
-            <div class="card-body">
-                <form method="get" action="/search-results">
-                    <div class="form-group">
-                        <label for="query">Requête de recherche</label>
-                        <input type="text" class="form-control" id="query" name="query" required>
-                    </div>
-                    <button type="submit" class="btn btn-primary">Rechercher</button>
-                </form>
+            <button type="submit" class="btn btn-primary">Rechercher</button>
+        </form>
+    </div>
+    <div class="card mt-5">
+        <div class="card-header">
+            <h2>Résultats de Recherche</h2>
+        </div>
+        <div class="card-body">
+            <div th:if="${results != null}">
+                <div th:each="result : ${results}" class="result-item">
+                    <div class="result-header">cn: <span th:text="${result.cn}"></span></div>
+                    <div>sn: <span th:text="${result.sn}"></span></div>
+                </div>
+            </div>
+            <div th:if="${results == null}">
+                <p> Aucun résultat à afficher. Veuillez effectuer une recherche.
+                    <span th:text="${result}"></span>
+                </p>
             </div>
         </div>
     </div>
-    <footer class="footer">
-        <div class="container">
-            <span>&copy; 2024 Thales Group. Tout droit réservé.</span>
-        </div>
-    </footer>
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
+</div>
+<footer class="footer">
+    <div class="container">
+        <span>&copy; 2024 Thales Group. Tout droit réservé.</span>
+    </div>
+</footer>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
